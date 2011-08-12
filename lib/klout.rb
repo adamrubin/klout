@@ -35,7 +35,10 @@ class Klout
     end
 
     def score(usernames)
+      puts "HI"
       request_uri = "http://api.klout.com/1/klout.json?key=#{@@api_key}&users=#{usernames}"
+      puts "req_uri is #{request_uri}"
+
       return request(request_uri)
     end
     
@@ -56,8 +59,11 @@ class Klout
     
     def request(request_uri)
       begin
+        
         url = URI.parse(request_uri)
         response = JSON.parse(Net::HTTP.get(url))
+
+        puts "response is #{response}"
         if response["status"] == 200
           response
         else
